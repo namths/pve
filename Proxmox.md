@@ -8,6 +8,20 @@ Edit logind.conf: `nano /etc/systemd/logind.conf`
 
 `HandleLidSwitchDocked=ignore`
 
+# Edit sources.list to repo server Vietnam 
+
+`nano /etc/apt/sources.list`
+
+Change
+
+`deb http://ftp.debian.org/debian bullseye main contrib` 
+
+to `deb http://debian.xtdv.net/debian/ bullseye main contrib`
+
+`deb http://ftp.debian.org/debian bullseye-updates main contrib` 
+
+to `deb http://debian.xtdv.net/debian/ bullseye-updates main contrib`
+
 # Disable message no subcription
 
 Remove repository pve-enterprise `rm /etc/apt/sources.list.d/pve-enterprise.list`
@@ -65,3 +79,16 @@ umount /mnt/pve/testdir
 rm /etc/systemd/system/mnt-pve-testdir.mount
 
 reboot
+
+# Update/Upgrade Proxmox VE 7.x (PVE 7.x)
+
+`nano /etc/apt/sources.list`
+
+PVE pve-no-subscription repository provided by proxmox.com
+
+NOT recommended for production use
+
+add: `deb http://download.proxmox.com/debian/pve bullseye pve-no-subscription`
+
+`apt update && apt dist-upgrade`
+
