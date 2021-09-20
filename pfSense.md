@@ -145,7 +145,7 @@ Repeat the above step again but this time we select LAN rather than WAN
 
 – Enable DHCP server on LAN by answering “y” when asked
 
-– Configure IP address range for the DHCP pool, here we use 10.0.1.10 as start address, 10.0.1.200 as the end address
+– Configure IP address range for the DHCP pool, here we use 10.1.1.100 as start address, 10.1.1.200 as the end address
 
 – Answer no for “…revert to HTTP…”
 
@@ -159,6 +159,7 @@ Bring back PVE web gui, navigate to node name/cluster name -> pfSense VM -> Hard
 
 ![Screen Shot 2021-09-20 at 19 41 16](https://user-images.githubusercontent.com/58029441/134003879-311a18bf-a658-4f98-acdd-104065df4193.png)
 
+Restart VM pfSense
 
 Now we have a working NAT network for VMs on Proxmox VE
 
