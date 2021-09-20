@@ -57,7 +57,11 @@ ExecStart=
 ExecStart=-/sbin/agetty --autologin root -s %I 115200,38400,9600 vt102`
 
 # Remove Directory in Proxmox
+
 systemctl disable mnt-pve-testdir.mount
+
 umount /mnt/pve/testdir
+
 rm /etc/systemd/system/mnt-pve-testdir.mount
+
 reboot
