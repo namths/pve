@@ -92,3 +92,8 @@ add: `deb http://download.proxmox.com/debian/pve bullseye pve-no-subscription`
 
 `apt update && apt dist-upgrade`
 
+# Modify/Change console/SSH login banner for Proxmox Virtual Environment (Proxmox VE / PVE)
+
+Change file: `/usr/bin/pvebanner`
+
+IP Node login: change file `nano /etc/hosts` line: `192.168.1.90 hp.local hp`
