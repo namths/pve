@@ -54,22 +54,16 @@ Find line `GRUB_CMDLINE_LINUX`: add end line `console=tty0 console=ttyS0,115200`
 
 - RHEL/CentOS/Fedora: `grub2-mkconfig --output=/boot/grub2/grub.cfg`
 
-# Auto login via xterm-js centos 7
-
-`vi /lib/systemd/system/serial-getty@.service`
-
-add `--autologin root` => `ExecStart=-/sbin/agetty --autologin root`
-
-# Auto login via xterm-js ubuntu 20 lts
+# Auto login via xterm-js
 
 `https://wiki.archlinux.org/title/Getty`
 
 `systemctl edit serial-getty@ttyS0.service`
-
-`[Service]
-ExecStart=
+````
+[Service]  
+ExecStart=  
 ExecStart=-/sbin/agetty --autologin root -s %I 115200,38400,9600 vt102`
-
+````
 # Remove Directory in Proxmox
 
 systemctl disable mnt-pve-testdir.mount
