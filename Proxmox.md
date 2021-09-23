@@ -67,7 +67,9 @@ add `--autologin root` => `ExecStart=-/sbin/agetty --autologin root`
 `systemctl edit serial-getty@ttyS0.service`
 
 `[Service]
+
 ExecStart=
+
 ExecStart=-/sbin/agetty --autologin root -s %I 115200,38400,9600 vt102`
 
 # Remove Directory in Proxmox
