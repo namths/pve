@@ -62,7 +62,7 @@ Find line `GRUB_CMDLINE_LINUX`: add end line `console=tty0 console=ttyS0,115200`
 ````
 [Service]  
 ExecStart=  
-ExecStart=-/sbin/agetty --autologin root -s %I 115200,38400,9600 vt102`
+ExecStart=-/sbin/agetty --autologin root -s %I 115200,38400,9600 vt102
 ````
 # Remove Directory in Proxmox
 
