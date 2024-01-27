@@ -88,6 +88,32 @@ add: `deb http://download.proxmox.com/debian/pve bullseye pve-no-subscription`
 
 # Modify/Change console/SSH login banner for Proxmox Virtual Environment (Proxmox VE / PVE)
 
-Change file: `/usr/bin/pvebanner`
+Change file: `nano /usr/bin/pvebanner`
 
 IP Node login: change file `nano /etc/hosts` line: `192.168.1.90 hp.local hp`
+
+# Set Network to use DHCP
+
+Change file: `nano /etc/hosts`
+
+````
+iface vmbr0 inet dhcp
+    bridge-ports enp5s0
+    bridge-stp off
+    bridge-fd 0
+````
+
+Change hostname
+$ `hostnamectl set-hostname pve.abc.com`
+
+Dynamic Host Configuration
+Add file: `nano /etc/dhcp/dhclient-exit-hooks.d/update-etc-hosts`
+
+````
+if ([ $reason = "BOUND" ] || [ $reason = "RENEW" ])
+then
+  sed -i "s/^.*\spve.abc.com\s.*$/${new_ip_address} pve.abc.com pve/" /etc/hosts
+fi
+````
+
+
