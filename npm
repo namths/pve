@@ -1,0 +1,2 @@
+# npm
+bash -c "$(wget --no-cache -qO- https://raw.githubusercontent.com/ej52/proxmox/main/create.sh)" -s --app nginx-proxy-manager --cleanup --os-version 3.18
