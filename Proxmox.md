@@ -117,16 +117,4 @@ iface vmbr0 inet dhcp
 Change hostname
 $ `hostnamectl set-hostname pve.abc.com`
 
-Dynamic Host Configuration
-Add file: `nano /etc/dhcp/dhclient-exit-hooks.d/update-etc-hosts`
-
-````
-#!/bin/sh
-
-if [ "$reason" = "BOUND" ] || [ "$reason" = "RENEW" ]; then
-  sed -i "s/^.*\s$(hostname -f)\s.*$/${new_ip_address} $(hostname -f) $(hostname -s)/" /etc/hosts
-fi
-````
-
-# other: https://weblog.lkiesow.de/
 
