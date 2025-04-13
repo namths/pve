@@ -44,11 +44,13 @@ Update grub: `update-grub`
 
 Edit modules: `nano /etc/modules`
 Edit add:
-`# Modules required for PCI passthrough
+```
+# Modules required for PCI passthrough
 vfio
 vfio_iommu_type1
 vfio_pci
-vfio_virqfd`
+vfio_virqfd
+```
 
 Run: `update-initramfs -u -k all`
 
