@@ -32,13 +32,25 @@ Edit proxmoxlib.js: `nano /usr/share/javascript/proxmox-widget-toolkit/proxmoxli
 
 Find (ctrl + w) `data.status` -> change condition =`if (false)`
 
-# Enable iommu using and add PCI Device from host to vm
+# Chỉnh sửa grub
 
 Edit grub: `nano /etc/default/grub`
 
-Find line `GRUB_CMDLINE_LINUX_DEFAULT`: add end line `intel_iommu=on`, ex: `GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on”`
+Edit `GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on iommu=pt pcie_acs_override=downstream,multifunction initcall_blacklist=sysfb_init video=simplefb:off video=vesafb:off video=efifb:off video=vesa:off disable_vga=1 vfio_iommu_type1.allow_unsafe_interrupts=1 kvm.ignore_msrs=1 modprobe.blacklist=radeon,nouveau,nvidia,nvidiafb,nvidia-gpu,snd_hda_intel,snd_hda_codec_hdmi,i915"`
 
 Update grub: `update-grub`
+
+# Cấu hình PCI Passthrough
+
+Edit modules: `nano /etc/modules`
+Edit add:
+`# Modules required for PCI passthrough
+vfio
+vfio_iommu_type1
+vfio_pci
+vfio_virqfd`
+
+Run: `update-initramfs -u -k all`
 
 # Enable xterm-js
 
@@ -87,10 +99,7 @@ add: `deb http://download.proxmox.com/debian/pve bullseye pve-no-subscription`
 `apt update && apt dist-upgrade`
 
 # Modify/Change console/SSH login banner for Proxmox Virtual Environment (Proxmox VE / PVE)
-
 Change file: `nano /usr/bin/pvebanner`
-
-IP Node login: change file `nano /etc/hosts` line: `192.168.1.90 hp.local hp`
 
 # Set Network to use DHCP
 
@@ -110,9 +119,10 @@ Dynamic Host Configuration
 Add file: `nano /etc/dhcp/dhclient-exit-hooks.d/update-etc-hosts`
 
 ````
-if ([ $reason = "BOUND" ] || [ $reason = "RENEW" ])
-then
-  sed -i "s/^.*\spve.abc.com\s.*$/${new_ip_address} pve.abc.com pve/" /etc/hosts
+#!/bin/sh
+
+if [ "$reason" = "BOUND" ] || [ "$reason" = "RENEW" ]; then
+  sed -i "s/^.*\s$(hostname -f)\s.*$/${new_ip_address} $(hostname -f) $(hostname -s)/" /etc/hosts
 fi
 ````
 
