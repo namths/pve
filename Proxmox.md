@@ -40,6 +40,12 @@ Edit `GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on iommu=pt pcie_acs_overrid
 
 Update grub: `update-grub`
 
+`nano /etc/kernel/cmdline`
+
+`quiet intel_iommu=on iommu=pt pcie_acs_override=downstream,multifunction initcall_blacklist=sysfb_init video=simplefb:off video=vesafb:off video=efifb:off video=vesa:off disable_vga=1 vfio_iommu_type1.allow_unsafe_interrupts=1 kvm.ignore_msrs=1 modprobe.blacklist=radeon,nouveau,nvidia,nvidiafb,nvidia-gpu,snd_hda_intel,snd_hda_codec_hdmi,i915`
+
+`proxmox-boot-tool refresh`
+
 # Cấu hình PCI Passthrough
 
 Edit modules: `nano /etc/modules`
