@@ -124,5 +124,17 @@ Change hostname
 $ `hostnamectl set-hostname pve.abc.com`
 
 Remove cluster
-$`https://gist.githubusercontent.com/btamayo/73892d7743666e4815e43fb4e2b9f3f3/raw/43849b49245d31c2292e46eb44a6948733375e98/del_cluster.sh`
+```
+systemctl stop pve-cluster
+systemctl stop corosync
+
+pmxcfs -l
+
+rm /etc/pve/corosync.conf
+rm -r /etc/corosync/*
+
+killall pmxcfs
+
+systemctl start pve-cluster
+```
 
