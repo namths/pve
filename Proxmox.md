@@ -10,17 +10,13 @@ Edit logind.conf: `nano /etc/systemd/logind.conf`
 
 # Edit sources.list to repo server Vietnam 
 
-`nano /etc/apt/sources.list`
+`nano /etc/apt/sources.list.d/debian.sources`
 
 Change
 
-`deb http://ftp.debian.org/debian bullseye main contrib` 
+`http://debian.xtdv.net/debian/`
 
-to `deb http://debian.xtdv.net/debian/ bullseye main contrib`
-
-`deb http://ftp.debian.org/debian bullseye-updates main contrib` 
-
-to `deb http://debian.xtdv.net/debian/ bullseye-updates main contrib`
+`https://mirror.twds.com.tw/debian-security/`
 
 # Disable message no subcription
 
@@ -59,8 +55,6 @@ vfio_iommu_type1
 vfio_pci
 vfio_virqfd
 ```
-
-
 
 Run: `update-initramfs -u -k all`
 
