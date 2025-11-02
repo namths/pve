@@ -58,9 +58,6 @@ vfio
 vfio_iommu_type1
 vfio_pci
 vfio_virqfd
-
-# Modules required for Intel GVT-g Split
-kvmgt
 ```
 
 
