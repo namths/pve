@@ -14,9 +14,12 @@ Edit logind.conf: `nano /etc/systemd/logind.conf`
 
 Change
 
-`http://debian.xtdv.net/debian/`
+`https://debian.xtdv.net/debian/`
 
 `https://mirror.twds.com.tw/debian-security/`
+
+`adduser namths`
+`usermod -aG sudo namths`
 
 # Disable message no subcription
 
